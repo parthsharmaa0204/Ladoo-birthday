@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Grandstander:wght@300..900&family=Quicksand:wght@300..700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Grandstander", cursive;
+  --font-sans: "Quicksand", sans-serif;
+}
+
+/* ─── Base ─────────────────────────────────────────────────────────────── */
+body {
+  @apply font-sans bg-[#fdfcf8] text-[#2c2c2c];
+  /* Enable hardware acceleration for smooth scroll-driven animations */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.serif {
+  @apply font-serif;
+}
+
+/* ─── Smooth section backgrounds ───────────────────────────────────────── */
+section {
+  transition: background-color 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ─── Smooth image loads ────────────────────────────────────────────────── */
+img {
+  transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+img[loading='lazy'] {
+  opacity: 0;
+}
+
+img[loading='lazy'].loaded,
+img:not([loading='lazy']) {
+  opacity: 1;
+}
+
+/* ─── GPU-accelerate scroll-driven sticky elements ─────────────────────── */
+[style*="sticky"],
+.sticky {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* ─── Silky motion elements ─────────────────────────────────────────────── */
+[data-framer-name],
+.motion-div {
+  will-change: transform, opacity;
+}
+
+/* ─── Smooth scrolling on the page ─────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ─── Soft section separators ───────────────────────────────────────────── */
+.section-fade-top {
+  mask-image: linear-gradient(to bottom, transparent 0%, black 8%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%);
+}
+
+.section-fade-bottom {
+  mask-image: linear-gradient(to top, transparent 0%, black 8%);
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, black 8%);
+}
+
+/* ─── Global text selection ─────────────────────────────────────────────── */
+::selection {
+  background-color: #fecdd3;
+  color: #9f1239;
+}
